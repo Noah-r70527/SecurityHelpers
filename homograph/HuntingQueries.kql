@@ -1,0 +1,194 @@
+// =============================================================================
+// Homograph Domain Threat Hunting — Defender XDR / Sentinel KQL
+// Source list: https://github.com/Noah-r70527/SecurityHelpers/blob/main/homograph/homograph_indicators.txt
+// =============================================================================
+// Notes on externaldata:
+//   - Cached ~1 hour per node. To force a refresh, tweak the query (e.g.
+//     add/remove a comment) so the cache key changes.
+//   - For SCHEDULED ANALYTICS RULES, convert this to a Sentinel watchlist
+//     instead — network blips become silent rule failures otherwise.
+//
+// Hunt index:
+//   HG-00  Indicator List Health Check
+//   HG-01  Homograph Domain Network Connections
+//   HG-02  Inbound Email with Homograph URLs
+//   HG-03  Browser Navigation to Homograph Domains
+//   HG-04  Homograph Clicks by Source Application
+//   HG-05  Punycode URLs in Inbound Email (Listless)
+//   HG-06  Mixed-Script DNS Queries (Listless)
+// =============================================================================
+
+
+// =============================================================================
+// HG-00 — Indicator List Health Check
+// -----------------------------------------------------------------------------
+// Canary query that verifies the GitHub indicator list doesn't contain any
+// legitimate brand domains. Returns 0 rows when healthy; anything else means
+// the list is poisoned and downstream hunts will produce false positives.
+// Run before every hunting session.
+// =============================================================================
+let HomographDomains = externaldata(Domain: string)
+    [@"https://raw.githubusercontent.com/Noah-r70527/SecurityHelpers/refs/heads/main/homograph/homograph_indicators.txt"]
+    with (format="txt");
+let LegitBrandDomains = dynamic([
+    "microsoft.com","microsoft.net","microsoft365.com","office.com","office.net",
+    "office365.com","outlook.com","onedrive.com","sharepoint.com","azure.com",
+    "google.com","gmail.com","apple.com","icloud.com","amazon.com","aws.amazon.com",
+    "paypal.com","facebook.com","meta.com","instagram.com","whatsapp.com",
+    "linkedin.com","netflix.com","dhl.com","fedex.com","ups.com","adobe.com",
+    "docusign.com","docusign.net","dropbox.com","booking.com","spotify.com",
+    "zoom.us","zoom.com","slack.com","github.com","okta.com","duosecurity.com",
+    "cloudflare.com","seeknow.com"
+]);
+HomographDomains
+| extend Domain = tolower(trim(@"\s+", Domain))
+| where Domain in (LegitBrandDomains)
+| summarize PoisonedEntries = count(), Examples = make_set(Domain, 20)
+
+
+// =============================================================================
+// HG-01 — Homograph Domain Network Connections
+// -----------------------------------------------------------------------------
+// Detects successful or attempted network connections from any managed
+// endpoint to a known homograph domain. Primary detection for post-click
+// compromise — if this fires, a user has already resolved or reached an
+// attacker-controlled lookalike domain.
+// =============================================================================
+let HomographDomains = externaldata(Domain: string)
+    [@"https://raw.githubusercontent.com/Noah-r70527/SecurityHelpers/refs/heads/main/homograph/homograph_indicators.txt"]
+    with (format="txt")
+    | extend Domain = tolower(trim(@"\s+", Domain))
+    | where isnotempty(Domain);
+DeviceNetworkEvents
+| where Timestamp > ago(30d)
+| where ActionType in ("ConnectionSuccess", "ConnectionAttempt", "DnsQueryResponse")
+| extend QueriedHost = tolower(tostring(parse_url(RemoteUrl).Host))
+| extend QueriedHost = iff(isempty(QueriedHost), tolower(RemoteUrl), QueriedHost)
+| where isnotempty(QueriedHost)
+| join kind=inner HomographDomains on $left.QueriedHost == $right.Domain
+| project Timestamp, DeviceName, InitiatingProcessFileName,
+          InitiatingProcessAccountName, QueriedHost, RemoteIP, RemotePort, ActionType
+| order by Timestamp desc
+
+
+// =============================================================================
+// HG-02 — Inbound Email with Homograph URLs
+// -----------------------------------------------------------------------------
+// Identifies email messages delivered or filtered that contain URLs pointing
+// to homograph domains, enriched with sender, recipient, subject, and
+// delivery action. Primary pre-click detection — surfaces phishing campaigns
+// before users interact.
+// =============================================================================
+let HomographDomains = externaldata(Domain: string)
+    [@"https://raw.githubusercontent.com/Noah-r70527/SecurityHelpers/refs/heads/main/homograph/homograph_indicators.txt"]
+    with (format="txt")
+    | extend Domain = tolower(trim(@"\s+", Domain))
+    | where isnotempty(Domain);
+EmailUrlInfo
+| where Timestamp > ago(30d)
+| extend UrlHost = tolower(tostring(parse_url(Url).Host))
+| where isnotempty(UrlHost)
+| join kind=inner HomographDomains on $left.UrlHost == $right.Domain
+| join kind=inner (EmailEvents
+                   | project NetworkMessageId, SenderFromAddress, SenderIPv4,
+                             RecipientEmailAddress, Subject, DeliveryAction,
+                             DeliveryLocation, ThreatTypes)
+    on NetworkMessageId
+| project Timestamp, SenderFromAddress, SenderIPv4, RecipientEmailAddress,
+          Subject, UrlHost, Url, DeliveryAction, DeliveryLocation, ThreatTypes
+| order by Timestamp desc
+
+
+// =============================================================================
+// HG-03 — Browser Navigation to Homograph Domains
+// -----------------------------------------------------------------------------
+// Catches browser launches to homograph URLs regardless of click source
+// (SMS, Teams DM, social media, QR code). Complements HG-02 by covering
+// vectors that bypass the email gateway.
+// =============================================================================
+let HomographDomains = externaldata(Domain: string)
+    [@"https://raw.githubusercontent.com/Noah-r70527/SecurityHelpers/refs/heads/main/homograph/homograph_indicators.txt"]
+    with (format="txt")
+    | extend Domain = tolower(trim(@"\s+", Domain))
+    | where isnotempty(Domain);
+DeviceEvents
+| where Timestamp > ago(30d)
+| where ActionType == "BrowserLaunchedToOpenUrl"
+| extend NavUrl = tolower(RemoteUrl)
+| extend NavHost = extract(@"https?://([^/\s]+)", 1, NavUrl)
+| where isnotempty(NavHost)
+| join kind=inner HomographDomains on $left.NavHost == $right.Domain
+| project Timestamp, DeviceName, InitiatingProcessFileName,
+          InitiatingProcessAccountName, NavHost, NavUrl
+| order by Timestamp desc
+
+
+// =============================================================================
+// HG-04 — Homograph Clicks by Source Application
+// -----------------------------------------------------------------------------
+// Filters homograph connections by initiating process (Outlook, Teams,
+// Slack, browsers) so you can attribute the click to the application the
+// user was in. Useful for tuning detection coverage by communication
+// channel and for user-awareness reporting.
+// =============================================================================
+let HomographDomains = externaldata(Domain: string)
+    [@"https://raw.githubusercontent.com/Noah-r70527/SecurityHelpers/refs/heads/main/homograph/homograph_indicators.txt"]
+    with (format="txt")
+    | extend Domain = tolower(trim(@"\s+", Domain))
+    | where isnotempty(Domain);
+DeviceNetworkEvents
+| where Timestamp > ago(30d)
+| where InitiatingProcessFileName in~ ("outlook.exe", "teams.exe", "ms-teams.exe",
+                                       "slack.exe", "msedge.exe", "chrome.exe",
+                                       "firefox.exe")
+| extend QueriedHost = tolower(tostring(parse_url(RemoteUrl).Host))
+| extend QueriedHost = iff(isempty(QueriedHost), tolower(RemoteUrl), QueriedHost)
+| where isnotempty(QueriedHost)
+| join kind=inner HomographDomains on $left.QueriedHost == $right.Domain
+| project Timestamp, DeviceName, InitiatingProcessFileName,
+          InitiatingProcessParentFileName, InitiatingProcessAccountName,
+          QueriedHost, RemoteIP, RemotePort
+| order by Timestamp desc
+
+
+// =============================================================================
+// HG-05 — Punycode URLs in Inbound Email (Listless)
+// -----------------------------------------------------------------------------
+// Detects any xn-- host in an inbound email URL without relying on the
+// indicator list. Catches zero-day homograph domains that haven't been
+// enumerated yet. High signal in most enterprises since legitimate IDN
+// usage in inbound email is rare.
+// =============================================================================
+EmailUrlInfo
+| where Timestamp > ago(7d)
+| extend UrlHost = tolower(tostring(parse_url(Url).Host))
+| where UrlHost startswith "xn--" or UrlHost contains ".xn--"
+| join kind=inner (EmailEvents
+                   | project NetworkMessageId, SenderFromAddress,
+                             RecipientEmailAddress, Subject, DeliveryAction)
+    on NetworkMessageId
+| project Timestamp, SenderFromAddress, RecipientEmailAddress, Subject,
+          UrlHost, Url, DeliveryAction
+| order by Timestamp desc
+
+
+// =============================================================================
+// HG-06 — Mixed-Script DNS Queries (Listless)
+// -----------------------------------------------------------------------------
+// Flags DNS queries whose second-level label mixes ASCII letters with
+// Cyrillic or Greek characters — an ICANN-prohibited pattern that's
+// near-pathognomonic for IDN homograph abuse. Catches novel variants no
+// list could anticipate.
+// =============================================================================
+DeviceNetworkEvents
+| where Timestamp > ago(7d)
+| where isnotempty(RemoteUrl)
+| extend Host = tolower(tostring(parse_url(RemoteUrl).Host))
+| extend Sld = tostring(split(Host, ".")[-2])
+| where isnotempty(Sld)
+| extend HasCyrillicOrGreek = Sld matches regex @"[\u0370-\u03FF\u0400-\u04FF]"
+| extend HasAsciiLetter = Sld matches regex @"[a-z]"
+| where HasCyrillicOrGreek and HasAsciiLetter
+| project Timestamp, DeviceName, InitiatingProcessFileName,
+          InitiatingProcessAccountName, Host, RemoteUrl
+| order by Timestamp desc
