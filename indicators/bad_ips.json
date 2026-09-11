@@ -2,24 +2,21 @@
   "134.185.85.61": {
     "first_seen": "2026-09-10T20:41:33Z",
     "last_seen": "2026-09-10T20:41:33Z",
-    "last_zone": "ndrtech.net",
-    "reason": "Cloudflare firewallcustom block on ndrtech.net: /wp-includes/css/buttons.css",
+    "reason": "Cloudflare block observed by ndrtech_firewall: /wp-includes/css/buttons.css",
     "source": "ndrtech_firewall",
     "strikes": 1
   },
   "185.95.156.182": {
     "first_seen": "2026-09-10T20:36:29Z",
     "last_seen": "2026-09-10T20:36:29Z",
-    "last_zone": "ndrtech.net",
-    "reason": "Cloudflare firewallcustom block on ndrtech.net: /wp-login.php",
+    "reason": "Cloudflare block observed by ndrtech_firewall: /wp-login.php",
     "source": "ndrtech_firewall",
     "strikes": 1
   },
   "45.61.188.202": {
     "first_seen": "2026-09-10T22:06:43Z",
     "last_seen": "2026-09-10T22:06:43Z",
-    "last_zone": "ndrtech.net",
-    "reason": "Cloudflare firewallcustom block on ndrtech.net: /plugins/editors/jce/jce.xml",
+    "reason": "Cloudflare block observed by ndrtech_firewall: /plugins/editors/jce/jce.xml",
     "source": "ndrtech_firewall",
     "strikes": 1
   },
