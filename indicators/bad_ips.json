@@ -29,10 +29,10 @@
   },
   "204.76.203.49": {
     "first_seen": "2026-09-10T22:25:53.816-0400",
-    "last_seen": "2026-09-11T07:22:35.584-0400",
+    "last_seen": "2026-09-11T15:31:14.770-0400",
     "reason": "Possible port scan detected",
     "source": "wazuh",
-    "strikes": 3
+    "strikes": 4
   },
   "37.255.232.187": {
     "first_seen": "2026-09-11T03:58:30.052-0400",
