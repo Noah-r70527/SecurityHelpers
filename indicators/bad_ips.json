@@ -8,8 +8,22 @@
   },
   "185.95.156.182": {
     "first_seen": "2026-09-10T20:36:29Z",
-    "last_seen": "2026-09-10T20:36:29Z",
+    "last_seen": "2026-09-11T14:44:08Z",
     "reason": "Cloudflare block observed by ndrtech_firewall: /wp-login.php",
+    "source": "ndrtech_firewall",
+    "strikes": 4
+  },
+  "193.32.162.135": {
+    "first_seen": "2026-09-11T13:49:30Z",
+    "last_seen": "2026-09-11T13:49:30Z",
+    "reason": "Cloudflare block observed by ndrtech_firewall: /wp-login.php",
+    "source": "ndrtech_firewall",
+    "strikes": 1
+  },
+  "193.34.212.54": {
+    "first_seen": "2026-09-11T13:51:11Z",
+    "last_seen": "2026-09-11T13:51:11Z",
+    "reason": "Cloudflare block observed by ndrtech_firewall: /images/images/cache.php",
     "source": "ndrtech_firewall",
     "strikes": 1
   },
