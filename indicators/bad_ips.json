@@ -1,9 +1,9 @@
 {
   "69.109.96.175": {
     "first_seen": "2026-09-10T21:23:42.738-0400",
-    "last_seen": "2026-09-10T21:23:42.738-0400",
-    "reason": "Possible port scan detected",
+    "last_seen": "2026-09-10T21:23:43.849-0400",
+    "reason": "Probable port scan detected",
     "source": "wazuh",
-    "strikes": 1
+    "strikes": 2
   }
 }
