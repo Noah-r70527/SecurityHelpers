@@ -54,5 +54,12 @@
     "reason": "Probable port scan detected",
     "source": "wazuh",
     "strikes": 2
+  },
+  "71.6.240.199": {
+    "first_seen": "2026-09-13T13:39:00.517-0400",
+    "last_seen": "2026-09-13T13:39:00.517-0400",
+    "reason": "Possible port scan detected",
+    "source": "wazuh",
+    "strikes": 1
   }
 }
