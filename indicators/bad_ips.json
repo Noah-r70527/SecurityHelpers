@@ -6,6 +6,13 @@
     "source": "ndrtech_firewall",
     "strikes": 1
   },
+  "172.110.223.243": {
+    "first_seen": "2026-09-14T05:01:48.002-0400",
+    "last_seen": "2026-09-14T05:01:48.002-0400",
+    "reason": "Possible port scan detected",
+    "source": "wazuh",
+    "strikes": 1
+  },
   "185.95.156.182": {
     "first_seen": "2026-09-10T20:36:29Z",
     "last_seen": "2026-09-11T14:44:08Z",
