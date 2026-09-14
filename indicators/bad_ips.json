@@ -68,5 +68,12 @@
     "reason": "Probable port scan detected",
     "source": "wazuh",
     "strikes": 4
+  },
+  "88.80.24.30": {
+    "first_seen": "2026-09-14T03:52:59.122-0400",
+    "last_seen": "2026-09-14T03:52:59.122-0400",
+    "reason": "Possible port scan detected",
+    "source": "wazuh",
+    "strikes": 1
   }
 }
