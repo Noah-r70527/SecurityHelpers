@@ -50,10 +50,10 @@
   },
   "213.202.230.211": {
     "first_seen": "2026-09-14T15:03:00.705-0400",
-    "last_seen": "2026-09-14T15:27:27.920-0400",
-    "reason": "Probable port scan detected",
+    "last_seen": "2026-09-14T15:32:11.459-0400",
+    "reason": "Possible port scan detected",
     "source": "wazuh",
-    "strikes": 3
+    "strikes": 4
   },
   "35.196.58.110": {
     "first_seen": "2026-09-14T01:21:54.822-0400",
