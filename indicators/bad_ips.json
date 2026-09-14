@@ -1,10 +1,10 @@
 {
   "103.176.113.197": {
     "first_seen": "2026-09-14T15:12:54.635-0400",
-    "last_seen": "2026-09-14T15:14:12.741-0400",
-    "reason": "Possible port scan detected",
+    "last_seen": "2026-09-14T15:14:24.191-0400",
+    "reason": "Probable port scan detected",
     "source": "wazuh",
-    "strikes": 3
+    "strikes": 4
   },
   "134.185.85.61": {
     "first_seen": "2026-09-10T20:41:33Z",
