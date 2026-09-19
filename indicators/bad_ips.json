@@ -171,5 +171,10 @@
     "reason": "Numerous recon attempts detected",
     "source": "Manual",
     "strikes": 478
+  },
+  "34.23.253.199": {
+    "reason": "Numerous recon attempts detected",
+    "source": "Manual",
+    "strikes": 230
   }
 }
