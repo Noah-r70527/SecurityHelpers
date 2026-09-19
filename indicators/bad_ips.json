@@ -36,10 +36,10 @@
   },
   "16.5.0.241": {
     "first_seen": "2026-09-19T17:14:41.332-0400",
-    "last_seen": "2026-09-19T17:15:59.540-0400",
-    "reason": "Possible port scan detected",
+    "last_seen": "2026-09-19T17:15:59.680-0400",
+    "reason": "Probable port scan detected",
     "source": "wazuh",
-    "strikes": 3
+    "strikes": 4
   },
   "172.110.223.243": {
     "first_seen": "2026-09-14T05:01:48.002-0400",
