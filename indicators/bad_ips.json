@@ -159,5 +159,10 @@
     "reason": "Possible port scan detected",
     "source": "wazuh",
     "strikes": 1
+  },
+  "94.154.46.245": {
+    "reason": "Numerous recon attempts detected",
+    "source": "Manual",
+    "strikes": 478
   }
 }
