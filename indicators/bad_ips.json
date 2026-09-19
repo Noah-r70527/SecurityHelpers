@@ -71,10 +71,10 @@
   },
   "193.46.255.156": {
     "first_seen": "2026-09-19T09:11:47.899-0400",
-    "last_seen": "2026-09-19T10:47:31.727-0400",
+    "last_seen": "2026-09-19T10:49:01.182-0400",
     "reason": "Possible port scan detected",
     "source": "wazuh",
-    "strikes": 6
+    "strikes": 7
   },
   "204.76.203.49": {
     "first_seen": "2026-09-10T22:25:53.816-0400",
