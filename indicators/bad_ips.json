@@ -8,10 +8,10 @@
   },
   "103.186.67.241": {
     "first_seen": "2026-09-17T06:37:14.831-0400",
-    "last_seen": "2026-09-18T12:56:51.727-0400",
-    "reason": "Probable port scan detected",
+    "last_seen": "2026-09-20T17:45:35.977-0400",
+    "reason": "Possible port scan detected",
     "source": "wazuh",
-    "strikes": 5
+    "strikes": 6
   },
   "106.75.176.89": {
     "first_seen": "2026-09-18T02:02:52.316-0400",
