@@ -69,6 +69,13 @@
     "source": "ndrtech_firewall",
     "strikes": 4
   },
+  "193.187.90.227": {
+    "first_seen": "2026-09-21T05:11:55.677-0400",
+    "last_seen": "2026-09-21T05:11:55.677-0400",
+    "reason": "Possible port scan detected",
+    "source": "wazuh",
+    "strikes": 1
+  },
   "193.32.162.135": {
     "first_seen": "2026-09-11T13:49:30Z",
     "last_seen": "2026-09-11T13:49:30Z",
