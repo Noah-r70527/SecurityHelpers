@@ -64,10 +64,10 @@
   },
   "185.199.92.28": {
     "first_seen": "2026-09-21T13:37:12.348-0400",
-    "last_seen": "2026-09-21T13:37:12.348-0400",
+    "last_seen": "2026-09-21T13:38:16.977-0400",
     "reason": "Possible port scan detected",
     "source": "wazuh",
-    "strikes": 1
+    "strikes": 2
   },
   "185.199.92.29": {
     "first_seen": "2026-09-21T13:37:12.369-0400",
