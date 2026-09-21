@@ -127,10 +127,10 @@
   },
   "34.133.44.46": {
     "first_seen": "2026-09-21T02:38:09.435-0400",
-    "last_seen": "2026-09-21T02:44:15.808-0400",
-    "reason": "Possible port scan detected",
+    "last_seen": "2026-09-21T02:44:42.766-0400",
+    "reason": "Probable port scan detected",
     "source": "wazuh",
-    "strikes": 4
+    "strikes": 5
   },
   "34.21.188.230": {
     "first_seen": "2026-09-15T19:29:13.777-0400",
