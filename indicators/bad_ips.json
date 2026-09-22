@@ -50,10 +50,10 @@
   },
   "172.110.223.243": {
     "first_seen": "2026-09-14T05:01:48.002-0400",
-    "last_seen": "2026-09-22T01:39:11.799-0400",
-    "reason": "Probable port scan detected",
+    "last_seen": "2026-09-22T08:01:26.654-0400",
+    "reason": "Possible port scan detected",
     "source": "wazuh",
-    "strikes": 4
+    "strikes": 5
   },
   "172.110.223.50": {
     "first_seen": "2026-09-17T07:58:35.914-0400",
