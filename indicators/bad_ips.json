@@ -29,10 +29,10 @@
   },
   "150.107.36.82": {
     "first_seen": "2026-09-22T11:30:49.684-0400",
-    "last_seen": "2026-09-22T11:30:49.684-0400",
-    "reason": "Possible port scan detected",
+    "last_seen": "2026-09-22T11:30:56.493-0400",
+    "reason": "Probable port scan detected",
     "source": "wazuh",
-    "strikes": 1
+    "strikes": 2
   },
   "155.212.18.58": {
     "first_seen": "2026-09-17T16:03:58.493-0400",
