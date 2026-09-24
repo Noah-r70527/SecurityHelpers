@@ -41,6 +41,13 @@
     "source": "wazuh",
     "strikes": 1
   },
+  "157.230.225.204": {
+    "first_seen": "2026-09-24T11:23:21.823-0400",
+    "last_seen": "2026-09-24T11:23:21.823-0400",
+    "reason": "Possible port scan detected",
+    "source": "wazuh",
+    "strikes": 1
+  },
   "16.5.0.241": {
     "first_seen": "2026-09-19T17:14:41.332-0400",
     "last_seen": "2026-09-19T17:15:59.680-0400",
