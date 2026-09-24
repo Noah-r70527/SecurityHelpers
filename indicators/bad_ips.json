@@ -230,10 +230,10 @@
   },
   "43.98.198.110": {
     "first_seen": "2026-09-24T11:26:48.898-0400",
-    "last_seen": "2026-09-24T11:28:50.003-0400",
+    "last_seen": "2026-09-24T11:32:42.208-0400",
     "reason": "Possible port scan detected",
     "source": "wazuh",
-    "strikes": 2
+    "strikes": 3
   },
   "45.138.12.15": {
     "first_seen": "2026-09-21T08:17:27.251-0400",
