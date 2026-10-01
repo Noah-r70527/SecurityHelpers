@@ -386,5 +386,12 @@
     "reason": "Numerous recon attempts detected",
     "source": "Manual",
     "strikes": 478
+  },
+  "95.110.224.50": {
+    "first_seen": "2026-09-30T22:16:22.090-0400",
+    "last_seen": "2026-09-30T22:16:22.090-0400",
+    "reason": "Possible port scan detected",
+    "source": "wazuh",
+    "strikes": 1
   }
 }
