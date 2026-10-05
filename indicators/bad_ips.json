@@ -184,9 +184,9 @@
   "193.111.198.241": {
     "first_seen": "2026-10-05T10:08:00.571-0400",
     "last_seen": "2026-10-05T10:08:00.571-0400",
-    "reason": "Possible port scan detected",
+    "reason": "Probable port scan detected",
     "source": "wazuh",
-    "strikes": 1
+    "strikes": 2
   },
   "193.187.90.227": {
     "first_seen": "2026-09-21T05:11:55.677-0400",
