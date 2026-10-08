@@ -377,10 +377,10 @@
   },
   "37.120.148.142": {
     "first_seen": "2026-10-08T07:15:42.902-0400",
-    "last_seen": "2026-10-08T07:15:42.902-0400",
-    "reason": "Possible port scan detected",
+    "last_seen": "2026-10-08T07:15:53.670-0400",
+    "reason": "Probable port scan detected",
     "source": "wazuh",
-    "strikes": 1
+    "strikes": 2
   },
   "37.255.232.187": {
     "first_seen": "2026-09-11T03:58:30.052-0400",
