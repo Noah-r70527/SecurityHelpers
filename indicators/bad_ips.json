@@ -253,10 +253,10 @@
   },
   "204.48.29.147": {
     "first_seen": "2026-10-08T11:46:07.718-0400",
-    "last_seen": "2026-10-08T11:46:07.718-0400",
-    "reason": "Possible port scan detected",
+    "last_seen": "2026-10-08T11:46:13.961-0400",
+    "reason": "Probable port scan detected",
     "source": "wazuh",
-    "strikes": 1
+    "strikes": 2
   },
   "204.76.203.195": {
     "first_seen": "2026-09-30T21:13:27.272-0400",
