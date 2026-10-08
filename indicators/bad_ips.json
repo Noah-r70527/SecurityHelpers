@@ -552,10 +552,10 @@
   },
   "94.154.43.203": {
     "first_seen": "2026-10-07T21:23:02.190-0400",
-    "last_seen": "2026-10-07T21:23:02.190-0400",
-    "reason": "Possible port scan detected",
+    "last_seen": "2026-10-07T21:23:02.192-0400",
+    "reason": "Probable port scan detected",
     "source": "wazuh",
-    "strikes": 1
+    "strikes": 2
   },
   "94.154.46.245": {
     "reason": "Numerous recon attempts detected",
