@@ -163,9 +163,9 @@
   "160.119.76.177": {
     "first_seen": "2026-11-21T09:56:01.350-0500",
     "last_seen": "2026-11-21T09:56:01.350-0500",
-    "reason": "Probable port scan detected",
+    "reason": "Possible port scan detected",
     "source": "wazuh",
-    "strikes": 1
+    "strikes": 2
   },
   "160.119.76.189": {
     "first_seen": "2026-11-20T12:40:31.899-0500",
