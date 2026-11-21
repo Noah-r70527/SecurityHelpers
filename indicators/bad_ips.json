@@ -148,10 +148,10 @@
   },
   "159.223.98.178": {
     "first_seen": "2026-11-20T21:40:32.499-0500",
-    "last_seen": "2026-11-20T21:40:32.499-0500",
-    "reason": "Possible port scan detected",
+    "last_seen": "2026-11-20T21:40:33.404-0500",
+    "reason": "Probable port scan detected",
     "source": "wazuh",
-    "strikes": 1
+    "strikes": 2
   },
   "16.5.0.241": {
     "first_seen": "2026-09-19T17:14:41.332-0400",
