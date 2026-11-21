@@ -160,6 +160,13 @@
     "source": "wazuh",
     "strikes": 4
   },
+  "160.119.76.176": {
+    "first_seen": "2026-11-21T09:57:33.687-0500",
+    "last_seen": "2026-11-21T09:57:33.687-0500",
+    "reason": "Possible port scan detected",
+    "source": "wazuh",
+    "strikes": 1
+  },
   "160.119.76.177": {
     "first_seen": "2026-11-21T09:56:01.350-0500",
     "last_seen": "2026-11-21T09:56:01.350-0500",
