@@ -412,6 +412,13 @@
     "source": "wazuh",
     "strikes": 1
   },
+  "211.230.3.71": {
+    "first_seen": "2026-11-22T16:04:16.273-0500",
+    "last_seen": "2026-11-22T16:04:16.273-0500",
+    "reason": "Possible port scan detected",
+    "source": "wazuh",
+    "strikes": 1
+  },
   "213.202.230.211": {
     "first_seen": "2026-09-14T15:03:00.705-0400",
     "last_seen": "2026-09-14T15:32:11.460-0400",
