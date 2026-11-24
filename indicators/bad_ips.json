@@ -85,10 +85,10 @@
   },
   "142.93.243.28": {
     "first_seen": "2026-11-23T21:40:20.300-0500",
-    "last_seen": "2026-11-23T21:40:20.300-0500",
-    "reason": "Possible port scan detected",
+    "last_seen": "2026-11-23T21:40:28.853-0500",
+    "reason": "Probable port scan detected",
     "source": "wazuh",
-    "strikes": 1
+    "strikes": 2
   },
   "143.198.189.151": {
     "first_seen": "2026-11-19T10:40:35.095-0500",
