@@ -587,10 +587,10 @@
   },
   "45.148.9.76": {
     "first_seen": "2026-11-22T23:13:42.474-0500",
-    "last_seen": "2026-11-24T14:59:25.881-0500",
-    "reason": "Possible port scan detected",
+    "last_seen": "2026-11-24T14:59:25.903-0500",
+    "reason": "Probable port scan detected",
     "source": "wazuh",
-    "strikes": 3
+    "strikes": 4
   },
   "45.158.196.112": {
     "first_seen": "2026-09-15T02:37:47.724-0400",
